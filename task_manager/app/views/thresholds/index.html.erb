@@ -1,0 +1,9 @@
+<%= render 'shared/nav' %>
+
+<div class='container'>
+  <div class='jumbotron'>
+  	<% @thresholds.each do |threshold| %>
+      %= threshold.value %>
+    <% end %>
+  </div>
+</div>

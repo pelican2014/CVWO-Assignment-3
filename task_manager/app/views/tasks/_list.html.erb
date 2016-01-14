@@ -1,0 +1,21 @@
+
+      <table class="table">
+              <tr>
+                <td align='left' width='70'><strong>Due by</strong></td>
+                <td><strong>Task</strong></td>
+                <td align='right' width='30'><strong>Left</strong></td>
+                <td align='right' width='100'></td>
+              </tr>
+            <% @tasks.each do |task| %>
+              <% if task.priority == priority %>
+                <tr>
+                  <td align='left'><%= task.due.strftime("%m-%d") %></td>
+                  <td><%= task.content %></td>
+                  <td align=''><%= (task.due - Date.today).to_i %></td>
+                  <td align='right'>
+                    [<%= link_to 'Edit', edit_task_path(task) %>]
+                    [<%= link_to 'Delete', task_path(task), method: :delete, data: {confirm: 'Are you sure?'} %>]</td>
+                </tr>
+              <% end %>
+            <% end %>
+      </table>
