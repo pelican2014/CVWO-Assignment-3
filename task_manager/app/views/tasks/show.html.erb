@@ -22,12 +22,20 @@
         <strong>Content: </strong><%= @task.content %>
       </td></tr>
 
+      <!-- Due date and days left -->
       <tr><td>
         <strong>Due by: </strong>
         <%= @task.due.strftime("%m-%d") %> | 
-        <%= (@task.due - Date.today).to_i %> 
-        <em>days left</em>
-        </td><td align='right' width='120'>
+        <!-- Show days left if task has not expired yet -->
+        <% if (@task.due - Date.today).to_i >= 0 %>
+          <%= (@task.due - Date.today).to_i %>
+          <em>days left</em>
+        <% else %>
+          <em>Expired</em>
+        <% end %>
+
+      <!-- Edit and Delete options -->
+      </td><td align='right' width='120'>
           [<%= link_to 'Edit', edit_task_path(@task) %>]
           [<%= link_to 'Delete', task_path(@task), method: :delete, data: {confirm: 'Are you sure?'} %>]
       </td></tr>

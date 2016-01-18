@@ -11,7 +11,14 @@
                   <tr>
                     <td align='left'><%= task.due.strftime("%m-%d") %></td>
                     <td><%= task.content %></td>
-                    <td align=''><%= (task.due - Date.today).to_i %></td>
+                    <td align=''>
+                      <!-- Show days left if task has not expired yet -->
+                      <% if (task.due - Date.today).to_i >= 0 %>
+                        <%= (task.due - Date.today).to_i %>
+                      <% else %>
+                        <em>Expired</em>
+                      <% end %>
+                    </td>
                     <td align='right'>[<%= link_to 'View', task_path(task) %>]</td>
                   </tr>
                 <% end %>

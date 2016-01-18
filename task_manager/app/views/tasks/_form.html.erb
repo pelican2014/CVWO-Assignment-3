@@ -39,9 +39,9 @@
       <div class="well">
         <br>
 
-         <p>
+        <p>
           <%= f.label :due, 'Due by' %><br>
-          <%= f.date_select :due %>
+          <%= f.date_select :due, default: Date.today %>
         </p>
 
         <br>
