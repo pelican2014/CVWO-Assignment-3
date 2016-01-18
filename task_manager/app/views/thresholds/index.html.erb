@@ -1,9 +1,19 @@
 <%= render 'shared/nav' %>
 
-<div class='container'>
-  <div class='jumbotron'>
-  	<% @thresholds.each do |threshold| %>
-      %= threshold.value %>
-    <% end %>
-  </div>
+<div class="panel panel-info"> <!-- red heading -->
+	<div class="panel-heading"><strong>Settings</strong></div>
+		<!-- Table -->
+		<table class="table">
+              <tr>
+                <td align='left'><strong>Item</strong></td>
+                <td><strong>Value</strong></td>
+                <td align='right'></td>
+              </tr>
+              <tr>
+                <td align='left'>Threshold value (separates <em>due later</em> and <em>due earlier</em>)</td>
+                <td><%= @thresholds[0].value %> days</td>
+                <td align='right'>[<%= link_to 'Change', edit_threshold_path(@thresholds[0]) %>]</td>
+              </tr>
+        </table>
+	</div>
 </div>

@@ -5,8 +5,16 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  resources :tasks
+  resources :tasks do
+    resources :tags
+  end
+
+  resources :tags do
+    resources :tasks
+  end
+
   resources :thresholds
+  
   root 'tasks#index'
 
   # Example of regular route:

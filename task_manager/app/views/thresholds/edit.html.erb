@@ -1,5 +1,30 @@
-<%= render 'nav' %>
- 
-<%= render 'form' %>
- 
-<%= link_to 'Back', tasks_path %>
+<%= render 'shared/nav' %>
+
+<%= form_for @threshold do |f| %>
+
+  <% if @threshold.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@threshold.errors.count, "error") %> prohibited
+        this threshold from being saved:
+      </h2>
+      <ul>
+        <% @threshold.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="panel panel-danger"> <!-- red heading -->
+    <div class="panel-heading"><strong>Value</strong></div>
+      <div class="container">
+        <br>
+        <p><%= f.text_field :value %></p>
+        <p><%= f.submit %> | [<%= link_to 'Back', thresholds_path %>]</p>
+      </div>
+    </div>
+  </div>
+
+<% end %>

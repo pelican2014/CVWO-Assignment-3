@@ -1,38 +1,58 @@
 <%= form_for @task do |f| %>
- 
+
   <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@task.errors.count, "error") %> prohibited
-        this task from being saved:
-      </h2>
-      <ul>
-        <% @task.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+    <div class="alert alert-danger">
+      <div id="error_explanation">
+        <h4>
+          <%= pluralize(@task.errors.count, "error") %> prohibited
+          this task from being saved:
+        </h4>
+        <ul>
+          <% @task.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
- 
-  <p>
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </p>
 
-  <p>
-  	<%= f.radio_button :priority, 'high', :checked => true %> 
-  	<%= label :priority_high, 'Higher priority' %>
-  	<%= f.radio_button :priority, 'low' %>
-  	<%= label :priority_low, 'Lower priority' %>
-  </p>
+  <div class="panel panel-info"> <!-- blue heading -->
+    <div class="panel-heading"><strong>New Task</strong></div>
+      <br>
+      <div class="well">
+        <p>
+          <%= f.label :content %><br>
+          <%= f.text_area :content %>
+        </p>
 
-   <p>
-    <%= f.label :due, 'Due by' %><br>
-    <%= f.date_select :due %>
-  </p>
+        <br>
+        <p>
+          <%= f.radio_button :priority, 'high', checked: true %> 
+          <%= f.label :priority, 'Higher priority', value: 'high' %> 
+        </p><p>
+          <%= f.radio_button :priority, 'low' %>
+          <%= f.label :priority, 'Lower priority', value:'low' %>
+        </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
- 
+      </div>
+
+      <div class="well">
+        <br>
+
+         <p>
+          <%= f.label :due, 'Due by' %><br>
+          <%= f.date_select :due %>
+        </p>
+
+        <br>
+      </div>
+
+      <div class="well">
+        <p>
+          <%= f.submit %> | [<%= link_to 'Back', tasks_path %>]
+        </p>
+      </div>
+    </div>
+  </div>
+
 <% end %>

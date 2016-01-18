@@ -1,0 +1,55 @@
+<%= render 'shared/nav' %>
+
+<!-- panel heading -->
+<% if @task.priority == 'high' && (@task.due - Date.today).to_i < @thresholds[0].value %>
+  <div class="panel panel-danger"> <!-- red heading -->
+    <div class="panel-heading"><strong>Higher Priority & Due Earlier</strong></div>
+<% elsif @task.priority == 'high' && (@task.due - Date.today).to_i > @thresholds[0].value %>
+  <div class="panel panel-info"> <!-- blue heading -->
+    <div class="panel-heading"><strong>Higher Priority & Due Later</strong></div>
+<% elsif @task.priority == 'low' && (@task.due - Date.today).to_i > @thresholds[0].value %>
+  <div class="panel panel-success"> <!-- green heading -->
+    <div class="panel-heading"><strong>Lower Priority & Due Earlier</strong></div>
+<% elsif @task.priority == 'low' && (@task.due - Date.today).to_i < @thresholds[0].value %>
+  <div class="panel panel-default"> <!-- gray heading -->
+    <div class="panel-heading"><strong>Lower Priority & Due Later</strong></div>
+<% end %>
+
+
+<!-- Table -->
+    <table class='table'>
+      <tr><td>
+        <strong>Content: </strong><%= @task.content %>
+      </td></tr>
+
+      <tr><td>
+        <strong>Due by: </strong>
+        <%= @task.due.strftime("%m-%d") %> | 
+        <%= (@task.due - Date.today).to_i %> 
+        <em>days left</em>
+        </td><td align='right' width='120'>
+          [<%= link_to 'Edit', edit_task_path(@task) %>]
+          [<%= link_to 'Delete', task_path(@task), method: :delete, data: {confirm: 'Are you sure?'} %>]
+      </td></tr>
+
+      <tr><td colspan="2">
+        <strong>Tags: </strong>
+        <p><% @task.tags.each do |tag| %>
+          <%= link_to [@task, tag], method: :delete, data: {confirm: 'Are you sure', id: :tag, task_id: @task} do %>
+            <button type="button" class="btn btn-default">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+              <strong><%= tag.name %></strong>
+            </button>
+          <% end %>
+        <% end %></p>
+      </td></tr>
+
+      <tr><td>
+        <%= form_for ([@task, @task.tags.build]) do |f| %>
+          <%= f.label :name, 'Add Tag: ' %>
+          <%= f.text_field :name %>
+          <%= f.submit %>
+        <% end %>
+      </td></tr>
+    </table>
+  </div>

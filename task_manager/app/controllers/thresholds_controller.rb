@@ -8,9 +8,9 @@ class ThresholdsController < ApplicationController
     # Show the index page instead
     redirect_to thresholds_path
   end
- 
+
   def new
-    @threshold = Threshold.new
+    redirect_to thresholds_path
   end
  
   def edit
@@ -46,6 +46,6 @@ class ThresholdsController < ApplicationController
  
   private
     def threshold_params
-      params.require(:threshold).permit(:created_at, :content, :priority, :due)
+      params.require(:threshold).permit(:value)
     end
 end

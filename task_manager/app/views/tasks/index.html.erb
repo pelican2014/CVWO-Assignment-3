@@ -5,13 +5,14 @@
 		<div class="panel panel-danger"> <!-- red heading -->
 		  <div class="panel-heading"><strong>Higher Priority & Due Earlier</strong></div>
 		  <!-- Table -->
-		  <%= render partial: 'list', locals: { priority: 'high' } %>
+		  <%= render partial: 'list', locals: { priority: 'high', due: 'earlier' } %>
 		</div>
 	</div>
   <div class='col-sm-6'>
 		<div class="panel panel-info"> <!-- blue heading -->
 		  <div class="panel-heading"><strong>Higher Priority & Due Later</strong></div>
 		  <!-- Table -->
+		  <%= render partial: 'list', locals: { priority: 'high', due: 'later' } %>
 		  <table class="table">
 		  </table>
 		</div>
@@ -22,13 +23,14 @@
 		<div class="panel panel-success"> <!-- green heading -->
 		  <div class="panel-heading"><strong>Lower Priority & Due Earlier</strong></div>
 		  <!-- Table -->
-		  <%= render partial: 'list', locals: { priority: 'low' } %>
+		  <%= render partial: 'list', locals: { priority: 'low', due: 'earlier' } %>
 		</div>
 	</div>
   <div class='col-sm-6'>
 		<div class="panel panel-default"> <!-- gray heading -->
 		  <div class="panel-heading"><strong>Lower Priority & Due Later</strong></div>
 		  <!-- Table -->
+		  <%= render partial: 'list', locals: { priority: 'low', due: 'later' } %>
 		  <table class="table">
 		  </table>
 		</div>
