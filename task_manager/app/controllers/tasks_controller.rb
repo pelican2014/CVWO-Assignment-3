@@ -2,6 +2,12 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     @thresholds = Threshold.all
+
+    # Create initial threshold value when there is no record in database
+    if @thresholds.size == 0
+      Threshold.create(value: 7)
+      @thresholds = Threshold.all
+    end
   end
  
   def show
