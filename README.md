@@ -5,7 +5,3 @@
 #### Online working application
 Please visit [http://52.88.146.132/](http://52.88.146.132/) for working application.
 Let me know if website's down. It's hosted on AWS Free Tier EC2.
-
-#### Notes
-* Write-up and user manual pending
-* Both tasks are completed

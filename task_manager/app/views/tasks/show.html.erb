@@ -40,6 +40,7 @@
           [<%= link_to 'Delete', task_path(@task), method: :delete, data: {confirm: 'Are you sure?'} %>]
       </td></tr>
 
+      <!-- Display Tags -->
       <tr><td colspan="2">
         <strong>Tags: </strong>
         <p><% @task.tags.each do |tag| %>
@@ -52,12 +53,13 @@
         <% end %></p>
       </td></tr>
 
+      <!-- Add Tag -->
       <tr><td>
         <%= form_for ([@task, @task.tags.build]) do |f| %>
           <%= f.label :name, 'Add Tag: ' %>
           <%= f.text_field :name %>
           <%= f.submit %>
-        <% end %>
+        <% end %> <!-- end of form -->
       </td></tr>
     </table>
   </div>

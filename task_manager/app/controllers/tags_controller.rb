@@ -5,6 +5,9 @@ class TagsController < ApplicationController
 
   def create
     @task = Task.find(params[:task_id])
+
+    # If tag already exists, create a record linking the tag and associated task
+    # if not, create the tag under the task
     if Tag.exists?(name: tag_params[:name])
     	if !(@task.tags.exists?(name: tag_params[:name]))
     		@task.tags << Tag.find_by(name: tag_params[:name])
